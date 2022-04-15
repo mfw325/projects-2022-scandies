@@ -1,10 +1,17 @@
 #Function to retrieve data
 
+import pandas_datareader as pdr
+
 def get_fred_data(start, end, var_name):
+    """Extract data from the Federal Reserve Bank of St. Louis
     
-    table = pdr.DataReader(var_name, 'fred', start, end)
-    """We first create a function that is used to retrieve all four datasets. 
-    By creating this function, we are able to reset the index and get the DATE field as a column, 
-    which we will need for the visualization and analysis.
+    Args: 
+    start (datetime): start date
+    end (datetime): end date
+    var_name (string): name of the timeseries extracted from the fred
+
+    Returns: 
+    (tuple): table with given timeseries from the fred
     """
+    table = pdr.DataReader(var_name, 'fred', start, end)
     return table.reset_index()
